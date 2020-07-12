@@ -13,17 +13,16 @@ int compute_min_refills(int dist, int tank, vector<int> & stops) {
 	while(curr<=dist){
 		int last=curr;
 		
-		while(curr<=dist && (stops[num] - last)<=tank)
+		while(curr<=dist && (stops[num] - last)<=tank && num!=stops.size())
 		{
 			curr=stops[num++];
 			if(num==stops.size())
 				break;
 		}
-		
+		if(dist-curr<=tank)
+			return ++f;
 		if(curr<=dist)
 			f++;
-		if(num==stops.size())
-			break;
 		if(last==curr)
 			return -1;		
 	}
