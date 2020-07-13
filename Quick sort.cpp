@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int partition(int a[],int l,int r){
+	if(l<r){
+    	int piv=a[l],j=l;
+    	for(int i=l+1;i<=r;i++)
+    		if(a[i]<=piv)
+    			swap(a[i],a[++j]);
+    	swap(a[l],a[j]);
+    	return j;
+	}
+}
+
+void quicksort(int a[],int l,int r){
+    if(l<r){
+    	int x=partition(a,l,r);
+    	quicksort(a,l,x-1);
+    	quicksort(a,x+1,r);
+    }
+}
+
+int main(){
+	int n;
+	cin>>n;
+	int a[n];
+	for(int i=0;i<n;i++)
+		cin>>a[i];	
+	quicksort(a,0,n-1);
+	for(int i=0;i<n;i++)
+		cout<<a[i];
+	return 0;
+}
